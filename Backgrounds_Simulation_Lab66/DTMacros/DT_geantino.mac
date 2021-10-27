@@ -1,0 +1,21 @@
+/run/initialize
+/tracking/verbose 1
+
+/random/setSeeds 1233 4388
+
+/process/list
+
+# Set the file name
+/filename/setFilename testgeantino.root
+
+#/gps/particle geantino
+#/gps/position 0 0 100.0 cm
+#/gps/position 35 0 -50 cm
+#/gps/position 0 0 0 cm
+#/gps/direction 0 1 0
+#/gps/position 0 0 0 cm
+#/gps/direction 0 0 1
+
+
+#/analysis/setFileName testgeantino
+/run/beamOn 1

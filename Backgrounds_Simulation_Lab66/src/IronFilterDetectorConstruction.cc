@@ -476,9 +476,15 @@ G4VPhysicalVolume* IronFilterDetectorConstruction::DefineVolumes()
   G4ThreeVector xyposition_of_origin = {2.721*m, -2.703*m, 0};
 
   //test box that surrounds the fridge
-  G4double test_x= 50*cm;
-  G4double test_y= 50*cm;
-  G4double test_z= 2.3*m;
+  //G4double test_x= 50*cm;
+  //G4double test_y= 50*cm;
+  //G4double test_z= 2.3*m;
+
+
+  //test box that surrounds the mixing plate
+  G4double test_x= 40*cm;
+  G4double test_y= 40*cm;
+  G4double test_z= 10*cm;
   //Fridge
   G4double SeventyKShield_Width = 0.2*cm;
   G4double SeventyKShield_Radius = 18.95*cm;
@@ -613,10 +619,13 @@ G4VPhysicalVolume* IronFilterDetectorConstruction::DefineVolumes()
   reardoor_LV->SetVisAttributes(G4VisAttributes(G4Colour::Brown()));
 
   G4double soil_width=2*m;
-  G4VSolid* LabFloorExtended_solid_S=  new G4Box("LabFloorExtended_solid", 20.0*m, 20.0*m , soil_width/2.0);
-  G4LogicalVolume* LabFloorExtended_solid_LV = new G4LogicalVolume(LabFloorExtended_solid_S, Soil, "LabFloorExtended_solid");
+  //G4VSolid* LabFloorExtended_solid_S=  new G4Box("LabFloorExtended_solid", 20.0*m, 20.0*m , soil_width/2.0);
+  G4VSolid* LabFloorExtended_solid_S=  new G4Box("LabFloorExtended_solid", lab68_wall_x/2.0, lab68_wall_y/2.0  , soil_width/2.0);
+  //G4LogicalVolume* LabFloorExtended_solid_LV = new G4LogicalVolume(LabFloorExtended_solid_S, Soil, "LabFloorExtended_solid");
+  G4LogicalVolume* LabFloorExtended_solid_LV = new G4LogicalVolume(LabFloorExtended_solid_S, Concrete, "LabFloorExtended_solid");
   LabFloorExtended_solid_PV = new G4PVPlacement(turnAlong, G4ThreeVector{lab68_wall_x/2.0,-lab68_wall_y/2.0,lab68_wall_z/2.0}-position_of_origin-G4ThreeVector(0., 0., lab68_wall_z/2.0+soil_width/2.0), LabFloorExtended_solid_LV, "LabFloor_extended", vacuum_solid_LV, false, 0, fCheckOverlaps);
   LabFloorExtended_solid_LV->SetVisAttributes(G4VisAttributes(G4Colour::Brown()));
+  //LabFloorExtended_solid_LV->SetVisAttributes(G4VisAttributes(G4Colour::Cyan()));
 
 
 
@@ -631,7 +640,7 @@ G4VPhysicalVolume* IronFilterDetectorConstruction::DefineVolumes()
 G4VSolid* DilutionUnit_S = new G4Tubs( "DilutionUnit", zeroRadius, DilutionUnit_Radius, (DilutionUnit_Height /2.0), startAngle, spanningAngle);
 G4LogicalVolume *DilutionUnit_LV = new G4LogicalVolume( DilutionUnit_S, Helium, "DilutionUnit" );
 //G4LogicalVolume *DilutionUnit_LV = new G4LogicalVolume( DilutionUnit_S, Germanium, "DilutionUnit" );
-DilutionUnit_PV = new G4PVPlacement( NO_ROT, G4ThreeVector(0,0,0),DilutionUnit_LV, "helium", vacuum_solid_LV, false, 0, fCheckOverlaps);
+DilutionUnit_PV = new G4PVPlacement( NO_ROT, G4ThreeVector(0,0,0),DilutionUnit_LV, "DilutionUnit", vacuum_solid_LV, false, 0, fCheckOverlaps);
 DilutionUnit_LV->SetVisAttributes(G4VisAttributes(G4Colour::Green()));
 
 
@@ -717,7 +726,7 @@ CPD_Unit_LV->SetVisAttributes(G4VisAttributes(G4Colour::Yellow()));
 G4VSolid* Coppler_Pillar_CPD_S = new G4Tubs( "Coppler_Pillar_CPD", zeroRadius, (17.8*mm/2.0), (83.5*mm /2.0), startAngle, spanningAngle);
 G4LogicalVolume *Coppler_Pillar_CPD_LV = new G4LogicalVolume( Coppler_Pillar_CPD_S, Copper, "Coppler_Pillar_CPD" );
 //new G4PVPlacement( NO_ROT, G4ThreeVector(0,0,20.75*mm+ 83.5*mm /2.0),Coppler_Pillar_CPD_LV, "CPD", vacuum_solid_LV, false, 0, fCheckOverlaps);
-Coppler_Pillar_CPD_PV = new G4PVPlacement( NO_ROT, G4ThreeVector(0,0,20.75*mm+ 83.5*mm /2.0),Coppler_Pillar_CPD_LV, "Copper Pillar", vacuum_solid_LV, false, 0, fCheckOverlaps);
+Coppler_Pillar_CPD_PV = new G4PVPlacement( NO_ROT, G4ThreeVector(0,0,20.75*mm+ 83.5*mm /2.0),Coppler_Pillar_CPD_LV, "Copper_Pillar", vacuum_solid_LV, false, 0, fCheckOverlaps);
 Coppler_Pillar_CPD_LV->SetVisAttributes(G4VisAttributes(G4Colour(1.,0.5,0.)));
 
 
@@ -811,14 +820,15 @@ OVCShield_LV->SetVisAttributes(G4VisAttributes(G4Colour(G4Colour::Cyan())));
 
 //Insulation but this is actually a surface to see the gammas coming out of the concrete walls and floor
 //G4VSolid* Insulation_S = new G4Box("Insulation", Water_cylindercal_can_radius/2.0, delta/2.0, (Water_cylindercal_can_height+ConcreteSupport_height)/2.);
-//G4VSolid* Insulation_S = new G4Box("Insulation",lab68_wall_x/1.5, lab68_wall_y/1.5, lab68_wall_z/1.5);
+G4VSolid* Insulation_S = new G4Box("Insulation",lab68_wall_x/1.5, lab68_wall_y/1.5, lab68_wall_z);
 
-G4VSolid* test_2_S = new G4Box("test_2_solid", test_x/2.0, test_y/2.0 , test_z/2.0);
-G4VSolid* test_hole_2_S = new G4Box("test_hole_2_solid", (test_x-2*delta)/2.0, (test_y-2*delta)/2.0, (test_z-2*delta)/2.0);
-G4SubtractionSolid* Insulation_S= new G4SubtractionSolid("Insulation", test_2_S, test_hole_2_S, NO_ROT, G4ThreeVector(0.,0., 0.));
+//G4VSolid* test_2_S = new G4Box("test_2_solid", test_x/2.0, test_y/2.0 , test_z/2.0);
+//G4VSolid* test_2_S = new G4Box("test_2_solid", test_x/2.0, test_y/2.0 , test_z/2.0);
+//G4VSolid* test_hole_2_S = new G4Box("test_hole_2_solid", (test_x-2*delta)/2.0, (test_y-2*delta)/2.0, (test_z-2*delta)/2.0);
+//G4SubtractionSolid* Insulation_S= new G4SubtractionSolid("Insulation", test_2_S, test_hole_2_S, NO_ROT, G4ThreeVector(0.,0., 0.));
 G4LogicalVolume* Insulation_LV = new G4LogicalVolume(Insulation_S, Vacuum, "Insulation");
-Insulation_PV = new G4PVPlacement(turnAlong, G4ThreeVector(0, 0,0) , Insulation_LV, "Insulation", vacuum_solid_LV, false, 0, fCheckOverlaps);
-//Insulation_PV = new G4PVPlacement(NO_ROT, G4ThreeVector{0.5*m,-1.2*m,1*m}, Insulation_LV, "Insulation", vacuum_solid_LV, false, 0, fCheckOverlaps);
+//Insulation_PV = new G4PVPlacement(NO_ROT, G4ThreeVector(0, 0, 36.7*cm + 9.6*cm + 9.4*cm) , Insulation_LV, "Insulation", vacuum_solid_LV, false, 0, fCheckOverlaps);
+//Insulation_PV = new G4PVPlacement(NO_ROT, G4ThreeVector{0.5*m,-1.2*m,0.75*m}, Insulation_LV, "Insulation", vacuum_solid_LV, false, 0, fCheckOverlaps);
 ////Insulation_PV = new G4PVPlacement(NO_ROT, G4ThreeVector(0., fFilterCellSpacing-colimator_length-3*delta/2.0, (Water_cylindercal_can_height-ConcreteSupport_height)/2 - DT_Ti_T_location - Insulation_Thickness), Insulation_LV, "Insulation", vacuum_solid_LV, false, 0, fCheckOverlaps);
 Insulation_LV->SetVisAttributes(G4VisAttributes(G4Colour::Yellow()));
 

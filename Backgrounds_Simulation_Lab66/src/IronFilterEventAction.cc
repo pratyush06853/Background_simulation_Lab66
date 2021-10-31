@@ -131,7 +131,8 @@ void IronFilterEventAction::EndOfEventAction(const G4Event* event){
             tmp_particle_name = stepCollection[i].GetParticleName();
 
 
-            if( (tmp_volume_name=="Insulation")){
+            if( tmp_volume_name=="CPD" || tmp_volume_name=="DilutionUnit" ){
+            //if( tmp_volume_name=="CPD"){
                 if_test= 1;
             }
 
@@ -140,7 +141,11 @@ void IronFilterEventAction::EndOfEventAction(const G4Event* event){
         // There is coincidence. Fill the wanted tracks
         if(if_test == 1){
             for( size_t i=0; i < stepCollection.size(); ++i ){
-              if(stepCollection[i].GetVolumeName()== "Insulation"){
+              if(
+                  //(stepCollection[i].GetVolumeName()== "DilutionUnit" && stepCollection[i].GetDepositedEnergy() !=0 ) ||
+                  ( (stepCollection[i].GetVolumeName()== "CPD" || stepCollection[i].GetVolumeName()== "DilutionUnit") && stepCollection[i].GetDepositedEnergy() !=0 )
+                ){
+              //if(stepCollection[i].GetStepID() == "Insulation"){
                 eventID = stepCollection[i].GetEventID();
                 trackID = stepCollection[i].GetTrackID();
                 stepID = stepCollection[i].GetStepID();
@@ -174,11 +179,11 @@ void IronFilterEventAction::EndOfEventAction(const G4Event* event){
 
                 global_time = stepCollection[i].GetGlobalTime();
 
-                //G4cout<<eventID<<"   "<<trackID
-                //                          <<"  "<<stepID
-                //                          <<"  "<<tmp_particle_name
-                //                          <<"  "<<tmp_volume_name
-                //                          <<"  "<<Eki-Ekf<<G4endl;
+                G4cout<<eventID<<"   "<<trackID
+                                          <<"  "<<stepID
+                                          <<"  "<<tmp_particle_name
+                                          <<"  "<<tmp_volume_name
+                                          <<"  "<<Eki-Ekf<<G4endl;
 
                 data_tree->Fill();
               }

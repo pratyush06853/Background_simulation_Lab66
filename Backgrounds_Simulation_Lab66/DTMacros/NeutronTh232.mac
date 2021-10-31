@@ -1,0 +1,145 @@
+/run/initialize
+/tracking/verbose 0
+
+/control/getEnv a
+/control/getEnv b
+
+/random/setSeeds {a} {b}
+
+/process/list
+/run/printProgress 1000
+
+/gps/pos/type Volume
+/gps/pos/shape Para
+/gps/pos/halfx 3.327 m
+/gps/pos/halfy 4.675315 m
+/gps/pos/halfz 5.636 m
+/gps/pos/centre 0.5 -1.2 0.75 m
+
+#/gps/pos/type Volume
+#/gps/pos/shape Para
+#/gps/pos/halfx 0.5 m
+#/gps/pos/halfy 0.5 m
+#/gps/pos/halfz 2.3 m
+#/gps/pos/centre 0 0 0 m 
+
+#/gps/pos/type Volume
+#a/gps/pos/shape Para
+#/gps/pos/halfx 0.4 m
+#/gps/pos/halfy 0.4 m
+#/gps/pos/halfz 0.1 m
+#/gps/pos/centre 0 0 0.557 m
+
+/gps/source/intensity 1
+/gps/ang/type iso
+/gps/particle neutron
+
+/gps/ene/type User
+/gps/hist/type energy
+/gps/hist/point 0.05	5.568E-13
+/gps/hist/point 0.15	1.046E-12
+/gps/hist/point 0.25	1.519E-12
+/gps/hist/point 0.35	1.883E-12
+/gps/hist/point 0.45	2.031E-12
+/gps/hist/point 0.55	1.987E-12
+/gps/hist/point 0.65	1.933E-12
+/gps/hist/point 0.75	1.939E-12
+/gps/hist/point 0.85	2.087E-12
+/gps/hist/point 0.95	2.319E-12
+/gps/hist/point 1.05	2.560E-12
+/gps/hist/point 1.15	2.712E-12
+/gps/hist/point 1.25	2.639E-12
+/gps/hist/point 1.35	2.498E-12
+/gps/hist/point 1.45	2.369E-12
+/gps/hist/point 1.55	2.217E-12
+/gps/hist/point 1.65	2.128E-12
+/gps/hist/point 1.75	2.093E-12
+/gps/hist/point 1.85	2.043E-12
+/gps/hist/point 1.95	1.969E-12
+/gps/hist/point 2.05	1.862E-12
+/gps/hist/point 2.15	1.764E-12
+/gps/hist/point 2.25	1.682E-12
+/gps/hist/point 2.35	1.593E-12
+/gps/hist/point 2.45	1.448E-12
+/gps/hist/point 2.55	1.284E-12
+/gps/hist/point 2.65	1.149E-12
+/gps/hist/point 2.75	1.018E-12
+/gps/hist/point 2.85	8.425E-13
+/gps/hist/point 2.95	6.736E-13
+/gps/hist/point 3.05	5.375E-13
+/gps/hist/point 3.15	4.601E-13
+/gps/hist/point 3.25	3.873E-13
+/gps/hist/point 3.35	3.067E-13
+/gps/hist/point 3.45	2.483E-13
+/gps/hist/point 3.55	2.267E-13
+/gps/hist/point 3.65	2.148E-13
+/gps/hist/point 3.75	2.014E-13
+/gps/hist/point 3.85	1.856E-13
+/gps/hist/point 3.95	1.693E-13
+/gps/hist/point 4.05	1.578E-13
+/gps/hist/point 4.15	1.415E-13
+/gps/hist/point 4.25	1.224E-13
+/gps/hist/point 4.35	1.020E-13
+/gps/hist/point 4.45	8.122E-14
+/gps/hist/point 4.55	6.239E-14
+/gps/hist/point 4.65	4.832E-14
+/gps/hist/point 4.75	3.501E-14
+/gps/hist/point 4.85	2.216E-14
+/gps/hist/point 4.95	1.096E-14
+/gps/hist/point 5.05	7.964E-15
+/gps/hist/point 5.15	7.102E-15
+/gps/hist/point 5.25	6.351E-15
+/gps/hist/point 5.35	5.781E-15
+/gps/hist/point 5.45	5.290E-15
+/gps/hist/point 5.55	4.761E-15
+/gps/hist/point 5.65	4.363E-15
+/gps/hist/point 5.75	4.016E-15
+/gps/hist/point 5.85	3.637E-15
+/gps/hist/point 5.95	3.398E-15
+/gps/hist/point 6.05	3.267E-15
+/gps/hist/point 6.15	3.152E-15
+/gps/hist/point 6.25	3.230E-15
+/gps/hist/point 6.35	3.265E-15
+/gps/hist/point 6.45	3.099E-15
+/gps/hist/point 6.55	2.900E-15
+/gps/hist/point 6.65	2.676E-15
+/gps/hist/point 6.75	2.462E-15
+/gps/hist/point 6.85	2.232E-15
+/gps/hist/point 6.95	1.983E-15
+/gps/hist/point 7.05	1.727E-15
+/gps/hist/point 7.15	1.447E-15
+/gps/hist/point 7.25	1.108E-15
+/gps/hist/point 7.35	7.970E-16
+/gps/hist/point 7.45	5.542E-16
+/gps/hist/point 7.55	4.870E-16
+/gps/hist/point 7.65	4.280E-16
+/gps/hist/point 7.75	3.678E-16
+/gps/hist/point 7.85	3.059E-16
+/gps/hist/point 7.95	2.426E-16
+/gps/hist/point 8.05	1.787E-16
+/gps/hist/point 8.15	1.140E-16
+/gps/hist/point 8.25	4.888E-17
+/gps/hist/point 8.35	1.983E-17
+/gps/hist/point 8.45	1.771E-17
+/gps/hist/point 8.55	1.543E-17
+/gps/hist/point 8.65	1.300E-17
+/gps/hist/point 8.75	1.161E-17
+/gps/hist/point 8.85	1.068E-17
+/gps/hist/point 8.95	9.811E-18
+/gps/hist/point 9.05	8.973E-18
+/gps/hist/point 9.15	8.169E-18
+/gps/hist/point 9.25	7.402E-18
+/gps/hist/point 9.35	6.679E-18
+/gps/hist/point 9.45	5.991E-18
+/gps/hist/point 9.55	5.330E-18
+/gps/hist/point 9.65	4.695E-18
+/gps/hist/point 9.75	4.088E-18
+/gps/hist/point 9.85	3.508E-18
+/gps/hist/point 9.95	2.949E-18
+
+/gps/pos/confine LabFloor_extended
+#/gps/pos/confine LabFloorWall
+
+/filename/setFilename Th232_0_neutron.root
+
+/run/beamOn 10000000 #geom40

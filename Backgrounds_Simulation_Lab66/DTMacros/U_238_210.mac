@@ -1,0 +1,44 @@
+/run/initialize
+/tracking/verbose 0
+
+/control/getEnv a
+/control/getEnv b
+
+/random/setSeeds {a} {b}
+
+/process/list
+/run/printProgress 1000
+
+/gps/pos/type Volume
+/gps/pos/shape Para
+/gps/pos/halfx 3.327 m
+/gps/pos/halfy 4.675315 m
+/gps/pos/halfz 5.636 m
+/gps/pos/centre 0.5 -1.2 0.75 m
+
+#/gps/pos/type Volume
+#/gps/pos/shape Para
+#/gps/pos/halfx 0.5 m
+#/gps/pos/halfy 0.5 m
+#/gps/pos/halfz 2.3 m
+#/gps/pos/centre 0 0 0 m 
+
+#/gps/pos/type Volume
+#/gps/pos/shape Para
+#/gps/pos/halfx 0.4 m
+#/gps/pos/halfy 0.4 m
+#/gps/pos/halfz 0.1 m
+#/gps/pos/centre 0 0 0.557 m
+
+/gps/source/intensity 1
+/gps/energy 0 MeV
+/gps/ang/type iso
+/gps/particle ion
+/gps/ion 92 238 0 0
+/grdm/nucleusLimits 210 238 81 92
+/gps/pos/confine LabFloor_extended
+#/gps/pos/confine LabFloorWall
+
+/filename/setFilename U_238_210_0_gamma.root
+
+/run/beamOn 10000000 #geom40
